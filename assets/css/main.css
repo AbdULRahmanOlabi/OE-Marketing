@@ -551,6 +551,38 @@ section {
   bottom: 0;
 }
 
+/* Arabic Version */
+
+.get-started .content-ar {
+  padding: 30px 0;
+}
+
+.get-started .content-ar h3 {
+  font-size: 36px;
+  color: var(--color-secondary);
+  font-weight: 600;
+  margin-bottom: 25px;
+  padding-bottom: 25px;
+  position: relative;
+}
+
+.get-started .content-ar h3:after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: var(--color-primary);
+  right: 0;
+  bottom: 0;
+}
+
+.get-started .content-ar p {
+  font-size: 14px;
+}
+
+/* End Arabic Version */
+
 .get-started .content p {
   font-size: 14px;
 }
@@ -857,6 +889,135 @@ section {
 .features .tab-pane p:last-child {
   margin-bottom: 0;
 }
+
+/* Arabic Version */
+
+.features-ar .nav-tabs {
+  border: 0;
+}
+
+.features-ar .nav-link {
+  padding: 15px 0;
+  transition: 0.3s;
+  color: var(--color-secondary);
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  height: 100%;
+  border: 0;
+  border-bottom: 4px solid #e2e4e6;
+}
+
+.features-ar .nav-link i {
+  padding-right: 15px;
+  font-size: 48px;
+}
+
+.features-ar .nav-link h4 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
+
+@media (max-width: 575px) {
+  .features-ar .nav-link h4 {
+    font-size: 16px;
+  }
+}
+
+.features-ar .nav-link:hover {
+  color: var(--color-primary);
+}
+
+.features-ar .nav-link.active {
+  color: var(--color-primary);
+  background-color: transparent;
+  border-color: var(--color-primary);
+}
+
+.features-ar .tab-content {
+  margin-top: 30px;
+}
+
+.features-ar .tab-pane h3 {
+  font-weight: 700;
+  font-size: 32px;
+  position: relative;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+}
+
+.features-ar .tab-pane h3:after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: var(--color-primary);
+  right: 0 !important;
+  bottom: 0;
+}
+
+.features-ar .tab-pane ul {
+  list-style: none;
+  padding: 0;
+}
+
+.features-ar .tab-pane ul li {
+  padding-top: 10px;
+}
+
+.features-ar .tab-pane ul i {
+  font-size: 20px;
+  padding-right: 4px;
+  color: var(--color-primary);
+}
+
+.features-ar .tab-pane p:last-child {
+  margin-bottom: 0;
+}
+
+.features-ar .tab-pane h3 {
+  font-weight: 700;
+  font-size: 32px;
+  position: relative;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+}
+
+.features-ar .tab-pane h3:after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: var(--color-primary);
+  right: 0;
+  bottom: 0;
+}
+
+.features-ar .tab-pane ul {
+  list-style: none;
+  padding: 0;
+}
+
+.features-ar .tab-pane ul li {
+  padding-top: 10px;
+}
+
+.features-ar .tab-pane ul i {
+  font-size: 20px;
+  padding-right: 4px;
+  color: var(--color-primary);
+}
+
+.features-ar .tab-pane p:last-child {
+  margin-bottom: 0;
+}
+
+/* End Arabic Version */
 
 /*--------------------------------------------------------------
 # Our Projects Section
