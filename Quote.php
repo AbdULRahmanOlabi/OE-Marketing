@@ -1,36 +1,84 @@
 <?php
 
-// Replace contact@example.com with your real receiving email address
-$receiving_email_address = 'contact@example.com';
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
 
-if (file_exists($php_email_form = '../assets/vendor/php-email-form/php-email-form.php')) {
-  include ($php_email_form);
-} else {
-  die('Unable to load the "PHP Email Form" Library!');
+require 'PHPMailer/src/PHPMailer.php';
+require 'PHPMailer/src/SMTP.php';
+require 'PHPMailer/src/Exception.php';
+
+$mail = new PHPMailer(true);
+
+try {
+  // SMTP Configuration
+  $mail->isSMTP();
+  $mail->Host = 'smtp.privateemail.com';
+  $mail->SMTPAuth = true;
+  $mail->Username = '';
+  $mail->Password = '';
+  $mail->SMTPSecure = 'tls';
+  $mail->Port = 587;
+
+  // Get Form Data
+  $name = $_POST['name'];
+  $email = $_POST['email'];
+  $subject = "OE-Marketing";
+  $message = $_POST['message'];
+  $phone = $_POST['phone'];
+
+  // Email Headers
+  $mail->setFrom('Info@OE-Marketing.com', 'OE-Marketing Scheduler');
+  $mail->addAddress('Info@OE-Marketing.com');
+
+  // Email Content
+  $mail->isHTML(true);
+  $mail->Subject = $subject;
+
+  // Email Body (Styled)
+  $email_content = '
+    <html>
+    <head>
+        <style>
+            .container {
+                max-width: 600px;
+                margin: 0 auto;
+                padding: 20px;
+                background-color: #f9f9f9;
+                border-radius: 10px;
+                text-align: left;
+            }
+            .content {
+                font-family: Arial, sans-serif;
+                line-height: 1.6;
+                text-align: left;
+            }
+            .message {
+                padding: 10px;
+                background-color: #fff;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h2>Meeting Details:</h2>
+            <div class="content">
+                <p><strong>Company Name:</strong> ' . htmlspecialchars($name) . '</p>
+                <p><strong>Company Email:</strong> ' . htmlspecialchars($email) . '</p>
+                <p><strong>Company Phone:</strong> ' . htmlspecialchars($phone) . '</p>
+                <p><strong>Mail Message:</strong> ' . htmlspecialchars($message) . '</p>
+            </div>
+        </div>
+    </body>
+    </html>';
+
+  $mail->Body = $email_content;
+
+  // Send Email
+  $mail->send();
+  echo "<script>alert('Thanks for your Proposal! We will contact you soon.');</script>";
+} catch (Exception $e) {
+  echo "<script>alert('Message could not be sent. Mailer Error: {$mail->ErrorInfo}');</script>";
 }
-
-$contact = new PHP_Email_Form;
-$contact->ajax = true;
-
-$contact->to = $receiving_email_address;
-$contact->from_name = $_POST['name'];
-$contact->from_email = $_POST['email'];
-$contact->subject = 'Request for a quote';
-
-// Uncomment below code if you want to use SMTP to send emails. You need to enter your correct SMTP credentials
-/*
-$contact->smtp = array(
-  'host' => 'example.com',
-  'username' => 'example',
-  'password' => 'pass',
-  'port' => '587'
-);
-*/
-
-$contact->add_message($_POST['name'], 'From');
-$contact->add_message($_POST['email'], 'Email');
-$contact->add_message($_POST['phone'], 'Phone');
-$contact->add_message($_POST['message'], 'Message', 10);
-
-echo $contact->send();
-?>
