@@ -13,12 +13,12 @@ $mail = new PHPMailer(true);
 try {
     // SMTP Configuration
     $mail->isSMTP();
-    $mail->Host = 'smtp.privateemail.com';
+    $mail->Host = 'OE-Marketing.com';
     $mail->SMTPAuth = true;
     $mail->Username = '';
     $mail->Password = '';
-    $mail->SMTPSecure = 'tls';
-    $mail->Port = 587;
+    $mail->SMTPSecure = 'ssl';
+    $mail->Port = 465;
 
     // Get Form Data
     $name = $_POST['name'];
@@ -27,7 +27,7 @@ try {
     $message = $_POST['message'];
 
     // Email Headers
-    $mail->setFrom('Info@OE-Marketing.com', 'OE-Marketing Scheduler');
+    $mail->setFrom('Info@OE-Marketing.com', 'OE-Marketing Quote Request');
     $mail->addAddress('Info@OE-Marketing.com');
 
     // Email Content
@@ -64,10 +64,10 @@ try {
         <div class="container">
             <h2>Meeting Details:</h2>
             <div class="content">
-                <p><strong>Company Name:</strong> ' . htmlspecialchars($name) . '</p>
-                <p><strong>Company Email:</strong> ' . htmlspecialchars($email) . '</p>
-                <p><strong>Mail Subject:</strong> ' . htmlspecialchars($subject) . '</p>
-                <p><strong>Mail Message:</strong> ' . htmlspecialchars($message) . '</p>
+                <p><strong>Name:</strong> ' . htmlspecialchars($name) . '</p>
+                <p><strong>Email:</strong> ' . htmlspecialchars($email) . '</p>
+                <p><strong>Subject:</strong> ' . htmlspecialchars($subject) . '</p>
+                <p><strong>Message:</strong> ' . htmlspecialchars($message) . '</p>
             </div>
         </div>
     </body>
@@ -77,7 +77,13 @@ try {
 
     // Send Email
     $mail->send();
-    echo "<script>alert('Thanks for choosing us! We will contact you soon.');</script>";
+    echo "<script>
+    alert('Thank you for reaching out! We will get back to you soon.');
+    window.location.href = 'Home.html'; 
+    </script>";
 } catch (Exception $e) {
-    echo "<script>alert('Message could not be sent. Mailer Error: {$mail->ErrorInfo}');</script>";
+    echo "<script>
+    alert('Message could not be sent. Mailer Error: {$mail->ErrorInfo}');
+    window.location.href = 'Home.html'; 
+    </script>";
 }

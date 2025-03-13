@@ -2,13 +2,18 @@ document.addEventListener("DOMContentLoaded", () => {
   "use strict";
 
   const header = document.querySelector("#header");
-  const logo = document.querySelector("#logo");
+  const logo = document.querySelector("#header .logo img");
+
+  const defaultLogo = "assets/img/Logo-White.png";
+  const scrolledLogo = "assets/img/Logo.png";
 
   window.addEventListener("scroll", () => {
     if (window.scrollY > 50) {
       header.classList.add("scrolled");
+      logo.src = scrolledLogo; // Change the logo when scrolled
     } else {
       header.classList.remove("scrolled");
+      logo.src = defaultLogo; // Reset to default logo when scrolled to top
     }
   });
 
